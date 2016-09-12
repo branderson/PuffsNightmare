@@ -1,7 +1,6 @@
 using Assets.Scripts.EntityComponents;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.Pooling;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -11,26 +10,35 @@ namespace Assets.Scripts.Player
         [SerializeField] private PooledMonoBehaviour _bulletPrefab;
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _maxFireRate = 1f;
+        [SerializeField] private int _invincibleFrames = 90;
 
+        private PlayerUIController _uiController;
         private Animator _animator;
-        private SpriteRenderer _renderer;
         private ReticleController _reticle;
 
+        private int _invincible = 0;
         private bool _facingRight = true;
         private int _shootFrames = 0;
 
-        private void Start()
+        private void Awake()
         {
+            _uiController = GetComponent<PlayerUIController>();
             _animator = GetComponent<Animator>();
-            _renderer = GetComponent<SpriteRenderer>();
             _reticle = GetComponentInChildren<ReticleController>();
         }
 	
         private void Update()
         {
+            UpdateCounters();
             HandleMovement();
             HandleReticle();
             HandleShooting();
+        }
+
+        private void UpdateCounters()
+        {
+            if (_invincible > 0) _invincible--;          
+            _shootFrames ++;
         }
 
         private void HandleMovement()
@@ -43,14 +51,7 @@ namespace Assets.Scripts.Player
             if (Mathf.Abs(hor) > 0 || Mathf.Abs(ver) > 0)
             {
                 transform.AdjustPosition(hSpeed*Time.deltaTime, vSpeed*Time.deltaTime);
-
-                if (_facingRight && hor < 0 || !_facingRight && hor > 0)
-                {
-                    // Flip the character
-                    transform.localScale = new Vector3(transform.localScale.x*-1, 
-                        transform.localScale.y, transform.localScale.z);
-                    _facingRight = !_facingRight;
-                }
+                _animator.SetBool("Forward", (hor > 0 && _facingRight) || (hor < 0 && !_facingRight));
             }
             _animator.SetFloat("MoveSpeed", Mathf.Abs(hSpeed) + Mathf.Abs(vSpeed));
         }
@@ -63,6 +64,14 @@ namespace Assets.Scripts.Player
             if (Mathf.Abs(hor) > 0 || Mathf.Abs(ver) > 0)
             {
                 _reticle.SetDirection(hor, ver, _facingRight);
+
+                if (_facingRight && hor < 0 || !_facingRight && hor > 0)
+                {
+                    // Flip the character
+                    transform.localScale = new Vector3(transform.localScale.x*-1, 
+                        transform.localScale.y, transform.localScale.z);
+                    _facingRight = !_facingRight;
+                }
             }
         }
 
@@ -72,8 +81,6 @@ namespace Assets.Scripts.Player
             // Fire more quickly the farther the trigger is held down
             float fireRate = Input.GetAxis("Fire");
             fireRate *= _maxFireRate;
-
-            _shootFrames ++;
 
             // Shoot fireRate times per second
             if (fireRate > 0 && _shootFrames > 60/fireRate)
@@ -105,9 +112,19 @@ namespace Assets.Scripts.Player
             return transform.position;
         }
 
+        public bool AcceptDamage()
+        {
+            return _invincible <= 0;
+        }
+
+        public void Damaged(int amount)
+        {
+            _uiController.UpdateHP();
+            _invincible = _invincibleFrames;
+        }
+
         public void Die()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

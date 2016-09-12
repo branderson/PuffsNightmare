@@ -9,7 +9,7 @@ namespace Assets.Scripts.Utility
         /// <summary>
         /// Caches transform the first time this is called
         /// </summary>
-        public Transform transform
+        public new Transform transform
         {
             get
             {

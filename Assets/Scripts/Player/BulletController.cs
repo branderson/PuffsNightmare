@@ -15,6 +15,7 @@ namespace Assets.Scripts.Player
 
         public override void Initialize()
         {
+            _damage = 1;
             _lifetime = 180;
         }
 

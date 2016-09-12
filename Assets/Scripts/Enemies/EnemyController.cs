@@ -8,17 +8,18 @@ namespace Assets.Scripts.Enemies
     public class EnemyController : CustomMonoBehaviour, IHealthTarget
     {
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private int _damage = 1;
         [SerializeField] private bool _facingRight = false;
 
         private PlayerController _player;
+        private Health _playerHealth;
         private Animator _animator;
-        private SpriteRenderer _renderer;
 
         private void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            _playerHealth = _player.GetComponent<Health>();
             _animator = GetComponent<Animator>();
-            _renderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -32,7 +33,6 @@ namespace Assets.Scripts.Enemies
 
             if ((_facingRight && moveDir.x < 0 || !_facingRight && moveDir.x > 0))
             {
-//                _renderer.flipX = !_renderer.flipX;
                 transform.localScale = new Vector3(transform.localScale.x*-1, 
                     transform.localScale.y, transform.localScale.z);
                 _facingRight = !_facingRight;
@@ -45,9 +45,41 @@ namespace Assets.Scripts.Enemies
             }
         }
 
+        private void Attack()
+        {
+            _animator.SetTrigger("Attack");
+        }
+
+        public bool AcceptDamage()
+        {
+            return true;
+        }
+
+        public void Damaged(int amount)
+        {
+            
+        }
+
         public void Die()
         {
             Destroy(gameObject);
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (collision.gameObject == _player.gameObject)
+            {
+                AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+
+                if (stateInfo.IsTag("Attack"))
+                {
+                    _playerHealth.AdjustHealth(-_damage);
+                }
+                else
+                {
+                    Attack();
+                }
+            }
         }
     }
 }
