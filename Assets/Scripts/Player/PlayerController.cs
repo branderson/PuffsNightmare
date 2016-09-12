@@ -11,9 +11,11 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _maxFireRate = 1f;
         [SerializeField] private int _invincibleFrames = 90;
+        [SerializeField] private int _flashFrames = 5;
 
         private PlayerUIController _uiController;
         private Animator _animator;
+        private SpriteRenderer _renderer;
         private ReticleController _reticle;
 
         private int _invincible = 0;
@@ -24,6 +26,7 @@ namespace Assets.Scripts.Player
         {
             _uiController = GetComponent<PlayerUIController>();
             _animator = GetComponent<Animator>();
+            _renderer = GetComponent<SpriteRenderer>();
             _reticle = GetComponentInChildren<ReticleController>();
         }
 	
@@ -37,7 +40,23 @@ namespace Assets.Scripts.Player
 
         private void UpdateCounters()
         {
-            if (_invincible > 0) _invincible--;          
+            if (_invincible > 0)
+            {
+                // Invincible effect
+                if (_invincible%(_flashFrames*2) == 0)
+                {
+                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
+                }
+                else if (_invincible%_flashFrames == 0)
+                {
+                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, .5f);
+                }
+                _invincible--;
+            }
+            else
+            {
+                _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
+            }
             _shootFrames ++;
         }
 
@@ -58,8 +77,20 @@ namespace Assets.Scripts.Player
 
         private void HandleReticle()
         {
-            float hor = Input.GetAxis("RightHorizontal");
-            float ver = Input.GetAxis("RightVertical");
+            // TODO: Toggle between mouse/thumbstick reticle based on which is in use rather than an actual setting
+            float hor = 0f;
+            float ver = 0f;
+            switch (SettingsManager.Instance.ControlMode)
+            {
+                case SettingsManager.ControlModes.Gamepad:
+                    hor = Input.GetAxis("RightHorizontal");
+                    ver = Input.GetAxis("RightVertical");
+                    break;
+                case SettingsManager.ControlModes.KeyboardMouse:
+                    hor = Input.mousePosition.x - Screen.width/2f;
+                    ver = Input.mousePosition.y - Screen.height/2f;
+                    break;
+            }
 
             if (Mathf.Abs(hor) > 0 || Mathf.Abs(ver) > 0)
             {
@@ -121,10 +152,12 @@ namespace Assets.Scripts.Player
         {
             _uiController.UpdateHP();
             _invincible = _invincibleFrames;
+            _animator.SetTrigger("Hurt");
         }
 
         public void Die()
         {
+            _animator.SetTrigger("Die");
         }
     }
 }

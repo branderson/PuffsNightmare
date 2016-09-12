@@ -1,3 +1,4 @@
+using System.Collections;
 using Assets.Scripts.EntityComponents;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utility;
@@ -62,7 +63,7 @@ namespace Assets.Scripts.Enemies
 
         public void Die()
         {
-            Destroy(gameObject);
+            _animator.SetTrigger("Die");
         }
 
         private void OnCollisionStay2D(Collision2D collision)

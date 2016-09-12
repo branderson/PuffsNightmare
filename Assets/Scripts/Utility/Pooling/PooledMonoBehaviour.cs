@@ -5,6 +5,11 @@ namespace Assets.Scripts.Utility.Pooling
 {
     /// <summary>
     /// MonoBehaviour that can be pooled
+    /// 
+    /// Get an instance of a pooled MonoBehaviour like this:
+    /// Foo bar = fooPrefab.GetPooledInstance<Foo>();
+    ///
+    /// Must have an empty GameObject tagged "Pools" in your scene to call this
     /// </summary>
     public abstract class PooledMonoBehaviour : CustomMonoBehaviour, IPoolable
     {
