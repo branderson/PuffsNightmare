@@ -1,14 +1,16 @@
-using UnityEngine;
-using System.Collections;
 using Assets.Scripts.Utility;
+using UnityEngine;
 
-public class SettingsManager : Singleton<SettingsManager>
+namespace Assets.Scripts.Managers
 {
-    public enum ControlModes
+    public class SettingsManager : Singleton<SettingsManager>
     {
-        KeyboardMouse,
-        Gamepad
-    }
+        public enum ControlModes
+        {
+            KeyboardMouse,
+            Gamepad
+        }
 
-    [SerializeField] public ControlModes ControlMode = ControlModes.KeyboardMouse;
+        [SerializeField] public ControlModes ControlMode = ControlModes.KeyboardMouse;
+    }
 }

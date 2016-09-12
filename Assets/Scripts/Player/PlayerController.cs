@@ -1,4 +1,5 @@
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.Pooling;
 using UnityEngine;

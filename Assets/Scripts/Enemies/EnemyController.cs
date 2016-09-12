@@ -1,8 +1,10 @@
 using System.Collections;
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.Level;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utility;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Enemies
 {
@@ -21,6 +23,9 @@ namespace Assets.Scripts.Enemies
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             _playerHealth = _player.GetComponent<Health>();
             _animator = GetComponent<Animator>();
+
+            // Tell listeners an enemy has spawned
+            ExecuteEvents.ExecuteHierarchy<IEnemyStatusTarget>(gameObject, null, (x, y) => x.EnemySpawned());
         }
 
         private void Update()
@@ -64,6 +69,9 @@ namespace Assets.Scripts.Enemies
         public void Die()
         {
             _animator.SetTrigger("Die");
+
+            // Tell listeners an enemy has died
+            ExecuteEvents.ExecuteHierarchy<IEnemyStatusTarget>(gameObject, null, (x, y) => x.EnemyDied());
         }
 
         private void OnCollisionStay2D(Collision2D collision)
