@@ -40,9 +40,9 @@ namespace Assets.Scripts.Level
             _uiController.EnemySpawned();
         }
 
-        public void EnemyDied()
+        public void EnemyDied(int score)
         {
-            _uiController.EnemyDied();
+            _uiController.EnemyDied(score);
         }
     }
 
@@ -50,6 +50,6 @@ namespace Assets.Scripts.Level
     {
         void EnemySpawned();
 
-        void EnemyDied();
+        void EnemyDied(int score);
     }
 }

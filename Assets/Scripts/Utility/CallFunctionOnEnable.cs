@@ -2,7 +2,7 @@ using Assets.Scripts.Utility.Synchronized;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.UIComponents
+namespace Assets.Scripts.Utility
 {
     public class CallFunctionOnEnable : SynchronizedMonoBehaviour
     {

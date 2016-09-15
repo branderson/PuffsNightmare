@@ -12,7 +12,9 @@ namespace Assets.Scripts.Enemies
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private int _damage = 1;
+        [SerializeField] private int _score = 1;
         [SerializeField] private bool _facingRight = false;
+        [SerializeField] private GameObject _deathObject;
 
         private PlayerController _player;
         private Health _playerHealth;
@@ -71,7 +73,7 @@ namespace Assets.Scripts.Enemies
             _animator.SetTrigger("Die");
 
             // Tell listeners an enemy has died
-            ExecuteEvents.ExecuteHierarchy<IEnemyStatusTarget>(gameObject, null, (x, y) => x.EnemyDied());
+            ExecuteEvents.ExecuteHierarchy<IEnemyStatusTarget>(gameObject, null, (x, y) => x.EnemyDied(_score));
         }
 
         private void OnCollisionStay2D(Collision2D collision)
