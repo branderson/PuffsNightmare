@@ -17,6 +17,7 @@ namespace Assets.Scripts.Level
         private EnemySpawner[] _spawners;
 
         private int _framesElapsed = 0;
+        private bool _gameOver = false;
 
         private void Awake()
         {
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Level
 
         private void Update()
         {
+            if (_gameOver) return;
             _framesElapsed++;
             foreach (EnemySpawner spawner in _spawners) spawner.SetSpawnRateFactor(_rateFactor*(1 + _framesElapsed/(60*60)));
         }
@@ -43,6 +45,12 @@ namespace Assets.Scripts.Level
         public void EnemyDied(int score)
         {
             _uiController.EnemyDied(score);
+        }
+
+        public void GameOver()
+        {
+            foreach (EnemySpawner spawner in _spawners) spawner.SetSpawnRateFactor(0f);
+            _gameOver = true;
         }
     }
 

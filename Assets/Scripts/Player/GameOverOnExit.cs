@@ -1,4 +1,5 @@
 using Assets.Scripts.Level;
+using Assets.Scripts.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -7,7 +8,8 @@ namespace Assets.Scripts.Player
     {
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.GetComponent<PlayerUIController>().GameOver();
+            // Inform the player that the game should end
+            animator.GetComponent<PlayerController>().GameOver();
         }
     }
 }

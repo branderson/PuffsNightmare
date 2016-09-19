@@ -1,15 +1,17 @@
 using Assets.Scripts.EntityComponents;
 using Assets.Scripts.Level;
+using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Player
 {
+    /// <summary>
+    /// Middleman class between the PlayerController and the UIController
+    /// </summary>
     public class PlayerUIController : MonoBehaviour
     {
-        [SerializeField] private Text _hpText;
-        [SerializeField] private Text _scoreText;
-        [SerializeField] private Text _enemyCountText;
+        [SerializeField] private UIController _uiController;
         [SerializeField] private GameOverController _gameOverController;
         private Health _health;
         public int Score { get; private set; }
@@ -24,6 +26,7 @@ namespace Assets.Scripts.Player
 
         private void Start()
         {
+            _uiController.ShowHUD();
             UpdateHP();
             UpdateScore();
             UpdateEnemyCount();
@@ -31,17 +34,17 @@ namespace Assets.Scripts.Player
 
         public void UpdateHP()
         {
-            _hpText.text = "Health: " + _health.HP.ToString();
+            _uiController.HP = _health.HP;
         }
 
         public void UpdateScore()
         {
-            _scoreText.text = "Score: " + Score.ToString();
+            _uiController.Score = Score;
         }
 
         public void UpdateEnemyCount()
         {
-            _enemyCountText.text = "Enemies: " + _enemies.ToString();
+            _uiController.EnemyCount = _enemies;
         }
 
         public void EnemySpawned()
@@ -60,8 +63,8 @@ namespace Assets.Scripts.Player
 
         public void GameOver()
         {
-            _gameOverController.gameObject.SetActive(true);
-            // TODO: Get rid of player
+            // Inform the UI that the game should end
+            _uiController.GameOver();
         }
     }
 }

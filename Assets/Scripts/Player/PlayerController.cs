@@ -23,6 +23,7 @@ namespace Assets.Scripts.Player
         private int _invincible = 0;
         private bool _facingRight = true;
         private int _shootFrames = 0;
+        private bool _dead = false;
 
         private void Awake()
         {
@@ -34,6 +35,7 @@ namespace Assets.Scripts.Player
 	
         private void Update()
         {
+            if (_dead) return;
             UpdateCounters();
             HandleMovement();
             HandleReticle();
@@ -157,9 +159,25 @@ namespace Assets.Scripts.Player
             _animator.SetTrigger("Hurt");
         }
 
+        /// <summary>
+        /// Starts death animation
+        /// </summary>
         public void Die()
         {
             _animator.SetTrigger("Die");
+            _dead = true;
+            _reticle.gameObject.SetActive(false);
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        /// <summary>
+        /// Called when player finishes death animation and should be disabled
+        /// </summary>
+        public void GameOver()
+        {
+            // Inform the player's UI that the game should end
+            _uiController.GameOver();
+            _renderer.enabled = false;
         }
     }
 }
