@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 76c8075f90371b142aef6eb389db0cec
-timeCreated: 1473552890
+timeCreated: 1474771407
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,10 +61,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 833
-        height: 848
+        width: 787.6667
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -72,12 +72,12 @@ TextureImporter:
       name: Puff-Idle-Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 833
+        x: 787
         y: 0
-        width: 833
-        height: 848
+        width: 787.6667
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -85,12 +85,12 @@ TextureImporter:
       name: Puff-Idle-Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 1666
+        x: 1574
         y: 0
-        width: 833
-        height: 848
+        width: 787.6667
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.48, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -1,6 +1,8 @@
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Level;
 using Assets.Scripts.Managers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Player
 {

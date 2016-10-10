@@ -1,5 +1,6 @@
 using System.Collections;
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Level;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utility;

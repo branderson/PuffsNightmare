@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: eac5542f8e1f6724c9560c32c20a988c
-timeCreated: 1473552921
+timeCreated: 1474773175
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,9 @@ TextureImporter:
     21300004: Puff-Jump-Spritesheet_2
     21300006: Puff-Jump-Spritesheet_3
     21300008: Puff-Jump-Spritesheet_4
+    21300010: Puff-Jump-Spritesheet_5
+    21300012: Puff-Jump-Spritesheet_6
+    21300014: Puff-Jump-Spritesheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -63,10 +66,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 833
-        height: 848
+        width: 787.5
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.37523732, y: 0.27999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -74,12 +77,12 @@ TextureImporter:
       name: Puff-Jump-Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 833
+        x: 787
         y: 0
-        width: 833
-        height: 848
+        width: 787.5
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.49, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -87,12 +90,12 @@ TextureImporter:
       name: Puff-Jump-Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 1666
+        x: 1574
         y: 0
-        width: 833
-        height: 848
+        width: 787.5
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.49, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -100,12 +103,12 @@ TextureImporter:
       name: Puff-Jump-Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 2499
+        x: 2361
         y: 0
-        width: 833
-        height: 848
+        width: 787.5
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.49, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -113,12 +116,51 @@ TextureImporter:
       name: Puff-Jump-Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 3332
+        x: 3148
         y: 0
-        width: 833
-        height: 848
+        width: 787.5
+        height: 1000
       alignment: 9
-      pivot: {x: 0.4, y: 0.33}
+      pivot: {x: 0.49, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Puff-Jump-Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 3935
+        y: 0
+        width: 787.5
+        height: 1000
+      alignment: 9
+      pivot: {x: 0.49, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Puff-Jump-Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 4722
+        y: 0
+        width: 787.5
+        height: 1000
+      alignment: 9
+      pivot: {x: 0.49, y: 0.28}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Puff-Jump-Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 5509
+        y: 0
+        width: 787.5
+        height: 1000
+      alignment: 9
+      pivot: {x: 0.49, y: 0.28}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -1,4 +1,5 @@
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Level;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
@@ -9,9 +10,27 @@ namespace Assets.Scripts.Player
 {
     public class PlayerController : CustomMonoBehaviour, IHealthTarget
     {
+        public enum PowerUpMode
+        {
+            Normal,
+            Flaming,
+            Gooey
+        }
+
+        public enum Weapon
+        {
+            Normal,
+            MachineGun,
+            Shotgun,
+        }
+
         [SerializeField] private PooledMonoBehaviour _bulletPrefab;
+        [SerializeField] private PooledMonoBehaviour _gooSplatPrefab;
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _maxFireRate = 1f;
+        [SerializeField] private int _fireModeFrames = 600;
+        [SerializeField] private int _fluffModeFrames = 600;
+        [SerializeField] private int _hopsPerGoo = 3;
         [SerializeField] private int _invincibleFrames = 90;
         [SerializeField] private int _flashFrames = 5;
 
@@ -19,18 +38,26 @@ namespace Assets.Scripts.Player
         private Animator _animator;
         private SpriteRenderer _renderer;
         private ReticleController _reticle;
+        private LevelController _levelController;
 
-        private int _invincible = 0;
+        private PowerUpMode _powerUpMode = PowerUpMode.Normal;
+        private Weapon _weapon = Weapon.Normal;
         private bool _facingRight = true;
+
+        private int _ammo = 0;
+        private int _powerUpModeFrames = 0;
+        private int _invincible = 0;
         private int _shootFrames = 0;
+        private int _gooHops = 0;
         private bool _dead = false;
 
         private void Awake()
         {
             _uiController = GetComponent<PlayerUIController>();
             _animator = GetComponent<Animator>();
-            _renderer = GetComponent<SpriteRenderer>();
+//            _renderer = GetComponent<SpriteRenderer>();
             _reticle = GetComponentInChildren<ReticleController>();
+            _levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
         }
 	
         private void Update()
@@ -49,17 +76,17 @@ namespace Assets.Scripts.Player
                 // Invincible effect
                 if (_invincible%(_flashFrames*2) == 0)
                 {
-                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
+//                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
                 }
                 else if (_invincible%_flashFrames == 0)
                 {
-                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, .5f);
+//                    _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, .5f);
                 }
                 _invincible--;
             }
             else
             {
-                _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
+//                _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 1f);
             }
             _shootFrames ++;
         }
@@ -121,8 +148,20 @@ namespace Assets.Scripts.Player
             if (fireRate > 0 && _shootFrames > 60/fireRate)
             {
                 _shootFrames = 0;
+                if (_weapon != Weapon.Normal)
+                {
+                    // Decrease ammo and revert to normal if out
+                    _ammo--;
+                    if (_ammo <= 0)
+                    {
+                        _weapon = Weapon.Normal;
+                    }
+                }
+
+                // Figure out which direction to shoot
                 Vector2 direction = _reticle.GetDirection(_facingRight);
 
+                // Find a pooled bullet or make one if there are none
                 BulletController bullet = _bulletPrefab.GetPooledInstance<BulletController>();
 
                 // Ignore collision between player and bullet
@@ -131,6 +170,8 @@ namespace Assets.Scripts.Player
                 {
                     Physics2D.IgnoreCollision(playerCollider, bulletCollider);
                 }
+
+                // Fire the bullet from the correct position in the correct direction
                 bullet.transform.position = GetBulletSpawnPosition();
                 bullet.SetDirection(direction);
             }
@@ -145,6 +186,27 @@ namespace Assets.Scripts.Player
         private Vector2 GetBulletSpawnPosition()
         {
             return transform.position;
+        }
+
+        public void GetFirePowerup()
+        {
+            _powerUpMode = PowerUpMode.Flaming;
+            _powerUpModeFrames = _fireModeFrames;
+        }
+
+        public void HopLand()
+        {
+            if (_powerUpMode == PowerUpMode.Gooey)
+            {
+                _gooHops++;
+                if (_gooHops >= _hopsPerGoo)
+                {
+                    GooSplat splat = _gooSplatPrefab.GetPooledInstance<GooSplat>();
+                    splat.transform.position = transform.position;
+
+                    _gooHops = 0;
+                }
+            }
         }
 
         public bool AcceptDamage()
@@ -175,9 +237,12 @@ namespace Assets.Scripts.Player
         /// </summary>
         public void GameOver()
         {
+            // Inform the level that the game should end
+            _levelController.GameOver();
+
             // Inform the player's UI that the game should end
             _uiController.GameOver();
-            _renderer.enabled = false;
+//            _renderer.enabled = false;
         }
     }
 }

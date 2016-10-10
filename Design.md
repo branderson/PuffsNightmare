@@ -1,3 +1,14 @@
+# Visuals
+## Enemies
+* (Not necessary) Enemies and corpses have different sprites based on health to show their status
+* Each enemy has a normal and zombie variant
+### Animations
+* Movement
+* Attack
+* Stuck
+* Slowed(?)
+* Death
+
 # Waves
 * Begin with set number of enemies and more enemies spawn throughout wave
 ## Morning -> Night system
@@ -18,3 +29,8 @@
 * Nearby enemies take damage
 
 ## Melted Marshmallow
+### Sticky residue
+* Leave behind sticky piles with each hop which cause an enemy that steps in them to become stuck
+
+### Sticky bullets
+* Bullets cause enemies to become slower
