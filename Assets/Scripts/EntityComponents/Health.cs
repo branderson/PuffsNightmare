@@ -1,9 +1,8 @@
-using System.Collections;
-using Assets.Scripts.Interfaces;
+using Assets.Interfaces;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.EntityComponents
+namespace Assets.EntityComponents
 {
     public class Health : MonoBehaviour
     {

@@ -1,12 +1,10 @@
 using System.Linq;
-using Assets.Scripts.Enemies;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player;
-using JetBrains.Annotations;
+using Assets.Enemies;
+using Assets.Interfaces;
+using Assets.Player;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Level
+namespace Assets.Level
 {
     public class LevelController : MonoBehaviour, IEnemyStatusTarget
     {

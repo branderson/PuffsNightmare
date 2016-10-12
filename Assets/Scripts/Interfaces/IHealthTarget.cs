@@ -1,6 +1,6 @@
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Interfaces
+namespace Assets.Interfaces
 {
     public interface IHealthTarget : IEventSystemHandler
     {

@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility;
+using Assets.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Managers
+namespace Assets.Managers
 {
     public class SettingsManager : Singleton<SettingsManager>
     {

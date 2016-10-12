@@ -1,8 +1,8 @@
-using Assets.Scripts.Player;
+using Assets.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Menu
+namespace Assets.Menu
 {
     public class UIController : MonoBehaviour
     {

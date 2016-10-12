@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Assets.Level
 {
     class WaveController : MonoBehaviour
     {

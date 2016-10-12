@@ -1,9 +1,9 @@
-using Assets.Scripts.EntityComponents;
-using Assets.Scripts.Utility;
-using Assets.Scripts.Utility.Pooling;
+using Assets.EntityComponents;
+using Assets.Utility.Pooling;
+using Assets.Utility.Static;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     public class BulletController : PooledMonoBehaviour
     {

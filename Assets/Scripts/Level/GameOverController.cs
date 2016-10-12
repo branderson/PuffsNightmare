@@ -1,9 +1,7 @@
-using Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-namespace Assets.Scripts.Level
+namespace Assets.Level
 {
     public class GameOverController : MonoBehaviour
     {

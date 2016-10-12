@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility;
+using Assets.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Assets.Level
 {
     public class LevelBorders : CustomMonoBehaviour
     {

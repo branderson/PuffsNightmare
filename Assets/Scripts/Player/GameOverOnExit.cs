@@ -1,10 +1,6 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Level;
-using Assets.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     public class GameOverOnExit : StateMachineBehaviour
     {

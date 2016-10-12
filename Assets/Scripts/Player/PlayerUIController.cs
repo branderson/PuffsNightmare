@@ -1,11 +1,9 @@
-using Assets.Scripts.EntityComponents;
-using Assets.Scripts.Level;
-using Assets.Scripts.Managers;
-using Assets.Scripts.Menu;
+using Assets.EntityComponents;
+using Assets.Level;
+using Assets.Menu;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     /// <summary>
     /// Middleman class between the PlayerController and the UIController

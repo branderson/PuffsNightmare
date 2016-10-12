@@ -1,7 +1,7 @@
-using Assets.Scripts.Level;
+using Assets.Level;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {

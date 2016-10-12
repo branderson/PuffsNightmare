@@ -1,7 +1,8 @@
-using Assets.Scripts.Utility;
+using Assets.Utility;
+using Assets.Utility.Static;
 using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Assets.Level
 {
     public class ForegroundObjectController : CustomMonoBehaviour
     {

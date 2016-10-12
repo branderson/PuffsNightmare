@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility;
+using Assets.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     public class ReticleController : CustomMonoBehaviour
     {

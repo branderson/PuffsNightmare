@@ -1,6 +1,6 @@
-using Assets.Scripts.Utility.Pooling;
+using Assets.Utility.Pooling;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     public class GooSplat : PooledMonoBehaviour
     {

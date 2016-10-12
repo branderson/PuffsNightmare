@@ -1,12 +1,12 @@
-using Assets.Scripts.EntityComponents;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Level;
-using Assets.Scripts.Managers;
-using Assets.Scripts.Utility;
-using Assets.Scripts.Utility.Pooling;
+using Assets.Interfaces;
+using Assets.Level;
+using Assets.Managers;
+using Assets.Utility;
+using Assets.Utility.Pooling;
+using Assets.Utility.Static;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Player
 {
     public class PlayerController : CustomMonoBehaviour, IHealthTarget
     {

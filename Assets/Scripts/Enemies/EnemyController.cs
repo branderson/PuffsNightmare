@@ -1,13 +1,11 @@
-using System.Collections;
-using Assets.Scripts.EntityComponents;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Level;
-using Assets.Scripts.Player;
-using Assets.Scripts.Utility;
+using Assets.EntityComponents;
+using Assets.Interfaces;
+using Assets.Player;
+using Assets.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Enemies
 {
     public class EnemyController : CustomMonoBehaviour, IHealthTarget
     {
