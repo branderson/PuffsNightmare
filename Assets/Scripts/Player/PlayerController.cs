@@ -172,7 +172,7 @@ namespace Assets.Player
                 }
 
                 // Fire the bullet from the correct position in the correct direction
-                bullet.transform.position = GetBulletSpawnPosition();
+                bullet.transform.SetPosition2D(GetBulletSpawnPosition());
                 bullet.SetDirection(direction);
             }
         }

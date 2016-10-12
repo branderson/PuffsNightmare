@@ -1,4 +1,4 @@
-﻿// ***********************************************************
+// ***********************************************************
 //	Copyright 2013 Daikon Forge, http://www.daikonforge.com
 //	All rights reserved.
 //
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Reflection;
-
+using UnityEditor.SceneManagement;
 using UnityObject = UnityEngine.Object;
 
 [CustomEditor( typeof( MonoBehaviour ) )]
@@ -232,7 +232,7 @@ This component's properties are shown below to help you determine which script i
 #if UNITY_4_3
 				Undo.RegisterCompleteObjectUndo( target, "Assign missing script" );
 #else
-				Undo.RegisterSceneUndo( "Assign missing script" );
+				Undo.RecordObject(target, "Assign missing script");
 #endif
 
 				// Assign the selected MonoScript 
@@ -242,7 +242,7 @@ This component's properties are shown below to help you determine which script i
 
 				// Save the scene in case Unity crashes
 				EditorUtility.SetDirty( this.target );
-				EditorApplication.SaveScene();
+				EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
 				EditorApplication.SaveAssets();
 
 				// Check for more objects with missing scripts

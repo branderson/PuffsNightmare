@@ -13,7 +13,7 @@ namespace Assets.Enemies
         [SerializeField] private int _damage = 1;
         [SerializeField] private int _score = 1;
         [SerializeField] private bool _facingRight = false;
-        [SerializeField] private GameObject _deathObject;
+//        [SerializeField] private GameObject _deathObject;
 
         private PlayerController _player;
         private Health _playerHealth;

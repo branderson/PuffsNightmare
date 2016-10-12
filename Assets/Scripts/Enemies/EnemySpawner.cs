@@ -1,4 +1,5 @@
 using Assets.Level;
+using Assets.Utility.Static;
 using UnityEngine;
 
 namespace Assets.Enemies
@@ -27,7 +28,7 @@ namespace Assets.Enemies
                 _spawnFrames = 0;
                 Transform enemy = Instantiate(_enemyPrefab).transform;
                 enemy.parent = _levelController.transform;
-                enemy.position = _levelController.GetRandomFreePosition();
+                enemy.SetPosition2D(_levelController.GetRandomFreePosition());
             }
             _spawnFrames++;
         }
